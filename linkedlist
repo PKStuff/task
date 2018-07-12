@@ -1,0 +1,206 @@
+#include <iostream>
+
+using namespace std;
+
+struct node
+{
+	int data;
+	node *next;
+};
+
+struct node *head = NULL;
+
+void insert(int data);
+void insertatfirst(int data);
+void insertatlast(int data);
+void deleteatfirst();
+void deleteatlast();
+void show();
+int menu();
+void reverse();
+int find(int data);
+
+void insertatfirst(int data){
+
+	node *temp = new node;
+	temp->data = data;
+	temp->next = NULL;
+
+	if (head == NULL)
+	{
+		head = temp;
+	}
+	else
+	{
+		temp->next = head;
+		head = temp;
+	}
+
+}
+void insertatlast(int data){
+
+	node *temp = new node;
+	temp->data = data;
+	temp->next = NULL;
+
+	if(head == NULL)
+	{
+		head = temp;
+	}
+	else
+	{
+		node *temp1 = head;
+
+		while(temp1->next != NULL)
+			temp1 = temp1->next;
+		temp1->next = temp;
+	}
+
+}
+void deleteatfirst(){
+
+	if(head == NULL)
+		cout<<"The list is empty:\n";
+	else
+	{
+		node *temp = head;
+		node *temp1 = NULL;
+		if(temp->next == NULL)
+		{
+			head = NULL;
+			delete temp;
+		}
+		else
+		{
+			temp1 = temp->next;
+			head = temp1;
+			delete temp;
+		}
+
+	}
+
+}
+void deleteatlast(){
+
+	if(head == NULL)
+		cout<<"The list is empty:\n";
+	else
+	{
+		node *temp = head;
+		node *temp1 = head;
+		if(temp->next == NULL){
+			head = NULL;
+			delete temp;
+		}
+		else
+		{
+			while(temp->next != NULL)
+			{
+				temp = temp1;
+				temp = temp->next;
+			}
+			temp1->next = NULL;
+			delete temp;
+		}
+	}
+
+}
+void reverse(){
+	node *prev = NULL;
+	node *current = head;
+	node *temp = NULL;
+
+	while(current != NULL)
+	{
+		temp = current->next;
+		current->next = prev;
+		prev = current;
+		current = temp;
+	}
+	head = prev;
+}
+int find(int data){
+	node *temp = head;
+	int result;
+	while(temp != NULL)
+	{
+		if(temp->data == data){
+			return 1;
+			break;
+		}
+		temp = temp->next;
+	}
+	return 0;
+}
+void show(){
+
+	if(head==NULL)
+		cout<<"The list is empty:\n";
+	else{
+		node *temp = head;
+
+		while(temp != NULL){
+			cout<<temp->data;
+			temp = temp->next;
+		}
+	}
+	cout<<endl;
+}
+int menu(){
+
+	int choice;
+
+	cout<<"1.Insert At First:\n";
+	cout<<"2.Insert At last:\n";
+	cout<<"3.Delete at First:\n";
+	cout<<"4.Delete at Last:\n";
+	cout<<"5.Print The Elements:\n";
+	cout<<"6.Reverse the linked list:\n";
+	cout<<"7.Find the element:\n";
+
+	cin>>choice;
+
+	return choice;
+
+}
+
+int main(void)
+{
+	int choice,data,result,data1;
+
+	do
+	{
+		choice = menu();
+
+		switch(choice)
+		{
+			case 1: cout<<"Enter the element:\n";
+					cin>>data;
+					insertatfirst(data);
+					break;
+			case 2:cout<<"Enter the element:\n";
+					cin>> data;
+					insertatlast(data);
+					break;
+			case 3:deleteatfirst();
+					break;
+			case 4:deleteatlast();
+					break;
+			case 5:show();
+					break;
+			case 6:reverse();
+					break;
+			case 7:cout<<"Enter the data:\n";
+					cin>>data1;
+					result = find(data1);
+					if(result == 1)
+						cout <<"element found:\n";
+					else
+						cout<<"element not found:\n";
+			default:"System Exit:";
+					break;
+		}
+
+	}while(choice != 8);
+	return 0;
+}
