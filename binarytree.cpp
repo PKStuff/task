@@ -3,8 +3,8 @@
 // Author      : 
 // Version     :
 // Copyright   : Your copyright notice
-// Description : This code includes insertion of element in binary tree and 
-//               traversal of binary tree.
+// Description : This code includes insertion of element and traversal of element
+//               in a binary tree.
 //============================================================================
 
 #include <iostream>
@@ -90,6 +90,93 @@ void insert(node *root,int data){
 		}
 	}
 }
+int lastnode(node *t)
+{
+	queue<node *> q1;
+
+	q1.push(t);
+
+	while(!q1.empty())
+	{
+		node *temp = q1.front();
+		q1.pop();
+
+		if(temp->left != NULL){
+			q1.push(temp->left);
+		}
+
+		if(temp->right != NULL){
+			q1.push(temp->right);
+		}
+	}
+return q1.back()->data;
+
+}
+
+void deleteNode(node *t ,int data){
+	queue<node *> q1,q2;
+
+	q1.push(t);
+	q2.push(t);
+
+	int element = lastnode(t);
+
+	while(!q1.empty())
+	{
+		node *temp = q1.front();
+		q1.pop();
+		if(temp->data == data )
+		{
+			temp->data = element;
+			break;
+		}
+		else
+		{
+			if(temp->left != NULL){
+				q1.push(temp->left);
+			}
+
+			if(temp->right != NULL){
+				q1.push(temp->right);
+			}
+		}
+	}
+
+	while(!q2.empty())
+	{
+		node *temp = q2.front();
+		q2.pop();
+
+		if(temp->left != NULL)
+		{
+			if(temp->left->data == element && temp->left->left == NULL && temp->left->right == NULL)
+			{
+				node *temp1 = temp->left;
+				temp->left = NULL;
+				delete(temp1);
+			}
+			else
+			{
+				q2.push(temp->left);
+			}
+		}
+		if(temp->right != NULL)
+		{
+			if(temp->right->data == element && temp->right->left == NULL && temp->left->right == NULL)
+			{
+				node *temp1 = temp->right;
+				temp->right = NULL;
+				delete(temp1);
+			}
+			else
+			{
+				q2.push(temp->right);
+			}
+		}
+
+
+	}
+}
 
 void preorder(node *t){
 	if(t!=NULL){
@@ -116,6 +203,8 @@ int menu()
 	cout<<"3.Postorder Traversal\n";
 	cout<<"4.Levelorder Traversal\n";
 	cout<<"5.Insert a element:\n";
+	cout<<"6.Last Leaf node\n";
+	cout<<"7.Delete a node:\n";
 
 	cout<<"Enter Your Choice:\n";
 	cin>>result;
@@ -126,7 +215,7 @@ int main(void){
 
 	node *root=newnode(1);
 
-	int choice,element;
+	int choice,element,last;
 
 	do{
 		choice = menu();
@@ -147,11 +236,18 @@ int main(void){
 			case 5:cout<<"Enter the element:\n";
 					cin>>element;
 					insert(root,element);
-					break;
+				break;
+			case 6:last = lastnode(root);
+					cout<<"The last leaf node is : "<<last<<endl;
+			    break;
+			case 7:cout<<"Enter the element to delete:\n";
+					cin>>element;
+					deleteNode(root,element);
+				break;
 			default:cout<<"System Exit\n";
 				break;
 		}
-	}while(choice != 6);
+	}while(choice != 8);
 
 	return 0;
 }
