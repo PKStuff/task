@@ -1,0 +1,4 @@
+import re
+email=re.compile(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[\.a-zA-Z{2,4}]')
+mo=email.search('pradipkothawale99@fisglobal.com')
+print(mo.group())
