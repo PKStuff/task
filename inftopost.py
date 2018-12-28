@@ -10,6 +10,8 @@ def precedence(op):
 		return 0
 	elif (op == '*' or op == '/'):
 		return 1
+	elif (op == '^'):
+		return 3
 	else:
 		return 2
 
@@ -19,13 +21,13 @@ def infixtopost(stack, exp):
 		if (char.isalpha()):
 			print(char,end="")
 		else:
-			if (char == '+' or char == '-' or char =='*' or char == '/'):
+			if (char == '+' or char == '-' or char =='*' or char == '/' or char == '^'):
 				#print(char)
 				if (not stack):
 					stack.append(char)
 				else:
 					if ((precedence(stack[-1]) >= precedence(char)) and stack[-1]!='(' and stack[-1]!=')'):
-						while (stack and (precedence(stack[-1]) >= precedence(char)) ):
+						while (stack and (precedence(stack[-1]) >= precedence(char)) and stack[-1]!='(' and stack[-1]!=')' ):
 							print(stack[-1],end="")
 							stack.pop()
 						stack.append(char)
