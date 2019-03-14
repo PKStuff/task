@@ -1,0 +1,36 @@
+import copy
+
+print("=========Shallow Copy=========")
+list1 = [1,2,[3,7],5]
+list2 = copy.copy(list1)
+
+
+list2[2][0]=13
+print(list1)
+print(list2)
+print("You can see that change in list2 will change list1 also in Shallow copy.")
+
+print("=========Deep Copy============")
+list3 = [6,7,[8,19],10]
+list4 = copy.deepcopy(list3)
+
+
+list4[2][0]=18
+print(list3)
+print(list4)
+print("You can see that change in list4 doesn't change the list3 in Deep Copy.")
+
+
+...
+o/p:
+
+=========Shallow Copy=========
+[1, 2, [13, 7], 5]
+[1, 2, [13, 7], 5]
+You can see that change in list2 will change list1 also in Shallow copy.
+=========Deep Copy============
+[6, 7, [8, 19], 10]
+[6, 7, [18, 19], 10]
+You can see that change in list4 doesn't change the list3 in Deep Copy.
+
+'''
