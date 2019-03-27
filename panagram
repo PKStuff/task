@@ -1,0 +1,17 @@
+from string import ascii_letters
+sentence = input("Enter the string:")
+
+string2 = "".join(filter(lambda x: x in (ascii_letters),sentence))
+
+if len(set(string2.lower())) == 26:
+  print("The Given String is a Panagram.")
+else:
+  print("The Given String is not Panagram.")
+  
+  
+'''
+o/p
+Enter the string:qqqwwwererrttyyuuiiop[]asdfghhhhhhjkl;llllzxcvbnmmmm,
+The Given String is a Panagram.
+
+'''
