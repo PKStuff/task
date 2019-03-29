@@ -1,0 +1,27 @@
+import numpy as np
+import sys
+
+arr = np.array([1,2,0,6,0,7,0,55,9,7,0,3,0,3,0,349,0])
+
+n = len(arr)
+first = arr[0]
+second = -sys.maxsize
+third = -sys.maxsize
+
+for i in range(1,n):
+
+  if arr[i] > first:
+     third = second
+     second = first
+     first = arr[i]
+  
+  elif arr[i] > second:
+    third = second
+    second = arr[i]
+  
+  elif arr[i] > third:
+
+    third = arr[i]
+
+
+print(first,second,third)
