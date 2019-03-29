@@ -1,0 +1,19 @@
+import numpy as np
+
+arr = np.array([1,2,0,6,0,7,0,55,9,7,0,3,0,3,0,349,0])
+
+count = 0
+n = len(arr)
+
+for i in range(0,n):
+
+  if arr[i]!=0:
+
+    arr[count] = arr[i]
+    count+=1
+  
+while count < n:
+  arr[count] = 0
+  count+=1
+
+print(arr)
