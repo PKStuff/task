@@ -1,0 +1,12 @@
+import os
+
+path = "C:/Users/lenovo/PycharmProjects/"
+def dic(cpath):
+    for path1 in os.listdir(cpath):
+        child = os.path.join(cpath, path1)
+
+        if os.path.isdir(child):
+            dic(child)
+        else:
+            print(child)
+dic(path)
