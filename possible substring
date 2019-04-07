@@ -1,0 +1,13 @@
+
+def substring(string1):
+    list1 = []
+    for i in range(0,len(string1)):
+        j = 0
+        while(j<=len(string1)):
+            if string1[i:j] != '':
+                list1.append(string1[i:j])
+            j+=1
+    return list1
+if __name__ == '__main__':
+    string1 = input("Enter the string:")
+    print(substring(string1))
