@@ -1,0 +1,29 @@
+def sub(string1,substring):
+    count = 0
+    i=0
+    while(i<len(string1)):
+#    for i in range(0,len(string1)):
+        first = substring[0]
+        subcount = 0
+        if string1[i] == first:
+
+            for j in range(0,len(substring)):
+
+                if string1[i+j] == substring[j]:
+                    subcount+=1
+
+            if subcount == len(substring):
+                count+=1
+                i+=subcount
+        i+=1
+    return count
+
+
+
+
+
+if __name__ == '__main__':
+
+    string1 = input("Enter the String:")
+    substring = input("Enter the SubString:")
+    print(sub(string1,substring))
