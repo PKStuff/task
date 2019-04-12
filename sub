@@ -2,7 +2,6 @@ def sub(string1,substring):
     count = 0
     i=0
     while(i<len(string1)):
-#    for i in range(0,len(string1)):
         first = substring[0]
         subcount = 0
         if string1[i] == first:
