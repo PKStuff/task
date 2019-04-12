@@ -1,0 +1,12 @@
+import numpy as np
+
+arr = np.array([3,5,12,6,23,7,34,8,64,1])
+
+ind = np.argsort(arr)
+
+dummy = np.zeros(len(arr),dtype=np.int64)
+
+for i,count in enumerate(ind):
+  dummy[i]=arr[count]
+
+print(dummy)
