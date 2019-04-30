@@ -1,0 +1,10 @@
+strings = ['pradip','sdsd','a','sharmila','kothawale']
+
+def letter(s):
+   return s[-1]
+print(sorted(strings, key=letter))
+
+'''
+OUTPUT:
+['a', 'sharmila', 'sdsd', 'kothawale', 'pradip']
+'''
