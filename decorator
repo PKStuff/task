@@ -1,0 +1,27 @@
+import time
+def decor(func):
+
+  def dec(*args, **kargs):
+    start_time = time.time()
+    result = func(*args, **kargs)
+    end_time = time.time()
+    print("time required:"+str(end_time-start_time))
+  return dec
+
+@decor
+def square(num):
+  result=[]
+  for i in range(1,num+1):
+    result.append(i*i)
+  return result
+
+@decor
+def cube(num):
+  result=[]
+  for i in range(1,num+1):
+    result.append(i*i*i)
+  return result
+
+if __name__ == '__main__':
+  square(200)
+  cube(200)
