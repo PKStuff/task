@@ -1,0 +1,17 @@
+string = 'aabcaaaaacaaaa'
+vowels = ('a','e','i','o','u')
+
+count1 = 0
+count2 = 0
+
+i=0
+while(i<len(string)):
+  if string[i] in vowels:
+    count1+=1
+    if len(string)-1==i:
+        count2 = count1 if count2 < count1 else count2
+  else:
+    count2 = count1 if count2 < count1 else count2
+    count1 = 0
+  i+=1
+print(count2)
