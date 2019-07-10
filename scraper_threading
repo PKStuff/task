@@ -1,0 +1,86 @@
+import requests
+from bs4 import BeautifulSoup
+import threading
+import os
+import time
+
+def main_thread():
+    url = "http://pngimg.com/imgs/fantasy/pokemon/"
+
+    data = requests.get(url)
+
+    soup = BeautifulSoup(data.text, 'html.parser')
+
+    images = soup.find_all('a', {'title': 'Pokemon PNG'})
+
+    img_numbers = []
+    for img in images:
+        img_num = (str(img).split('pokemon_PNG')[1].split('.png')[0])
+        img_numbers.append(int(img_num))
+
+    total_images = len(images)
+    allcation = total_images//5
+    remaining = total_images%5
+    if remaining > 0:
+        counter = allcation + 1
+    else:
+        counter = allcation
+    thread_container = []
+    for i in range(0,counter):
+        if i == allcation and remaining > 0:
+            start = i*5
+            end = total_images
+        else:
+            start = i*5
+            end = (i+1)*5
+        arr = img_numbers[start:end]
+        t1 = threading.Thread(target=scrap, args=(arr,))
+        thread_container.append(t1)
+    
+    for t1 in thread_container:
+        t1.start()
+    
+    for t1 in thread_container:
+        t1.join()
+
+def scrap(arr):
+    for img_number in arr:
+        new_url = "http://pngimg.com/uploads/pokemon/pokemon_PNG" + str(img_number) + ".png"
+        page = requests.get(new_url)
+        f_ext = os.path.splitext(new_url)[-1]
+        f_name = 'images/img{}{}'.format(str(img_number), f_ext)
+
+        with open(f_name, 'wb') as f:
+            f.write(page.content)
+        
+        print("pokemon_PNG" + str(img_number) + ".png has been completed.")
+# Without threading
+# def scrap():
+#     url = "http://pngimg.com/imgs/fantasy/pokemon/"
+
+#     data = requests.get(url)
+
+#     soup = BeautifulSoup(data.text, 'html.parser')
+
+#     images = soup.find_all('a', {'title': 'Pokemon PNG'})
+
+#     for img in images:
+#         img_number = (str(img).split('pokemon_PNG')[1].split('.png')[0])
+#         new_url = "http://pngimg.com/uploads/pokemon/pokemon_PNG" + img_number + ".png"
+
+#         page = requests.get(new_url)
+#         f_ext = os.path.splitext(new_url)[-1]
+#         f_name = 'images/img{}{}'.format(img_number, f_ext)
+
+#         with open(f_name, 'wb') as f:
+#             f.write(page.content)
+
+#         print("pokemon_PNG" + img_number + ".png has been completed.")
+
+if __name__ == '__main__':
+    t = time.time()
+    #scrap()
+    main_thread()
+    print("All Done.")
+    print("Time required to scrap all images are:{}".format(time.time()-t))
+
