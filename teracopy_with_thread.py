@@ -69,4 +69,9 @@ if __name__ == '__main__':
 
     print("Time required to copy {} files are:{}".format(count_files,(end_time-start_time))) 
 
+    """
+    OUTPUT:
+    Time required to copy 207 files are:0.658820390701294
+    
+    """
     
