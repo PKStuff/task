@@ -1,0 +1,18 @@
+from stack_header import Stack
+
+st1 = Stack()
+st1.push(1)
+st1.push(2)
+st1.push(3)
+st1.push(4)
+st1.push(5)
+st1.push(6)
+st1.push(7)
+st1.push(8)
+st1.push(9)
+st1.push(10)
+st1.push(11)
+st1.display()
+print(st1.pop())
+st1.display()
+print("Top is: {}".format(st1.Top()))
