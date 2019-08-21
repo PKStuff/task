@@ -144,8 +144,8 @@ def pattern(n):
             print(a,end=" ")
         for b in range(i,1,-1):
             print(b-1,end=" ")
-        for j in range(k):
-            print(end="  ")
+#         for j in range(k):
+#             print(end="  ")
         print()
 
 if __name__ == '__main__':
