@@ -165,3 +165,41 @@ PS C:\Projects\Python> python .\sample.py
   1 2 3 4 5 6 7 8 9 8 7 6 5 4 3 2 1
 1 2 3 4 5 6 7 8 9 10 9 8 7 6 5 4 3 2 1
 '''
+def pattern(n):
+    for i in range(1,n):
+        k = n - i
+        for j in range(1,k):
+            print(end=" ")
+        for a in range(1,i):
+            print(a,end=" ")
+        print()
+    for i in range(n-1,1,-1):
+        k = n - i
+        for j in range(1,k):
+            print(end=" ")
+        for a in range(1,i):
+            print(a,end=" ")
+        print()
+
+pattern(10)
+'''
+lenovo@lenovo-Lenovo-ideapad-330-15IKB:/media/lenovo/New Volume/Stuff/Python/task$ python3 Sample.py 
+        
+       1 
+      1 2 
+     1 2 3 
+    1 2 3 4 
+   1 2 3 4 5 
+  1 2 3 4 5 6 
+ 1 2 3 4 5 6 7 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 
+ 1 2 3 4 5 6 7 
+  1 2 3 4 5 6 
+   1 2 3 4 5 
+    1 2 3 4 
+     1 2 3 
+      1 2 
+       1 
+lenovo@lenovo-Lenovo-ideapad-330-15IKB:/media/lenovo/New Volume/Stuff/Python/task
+'''
