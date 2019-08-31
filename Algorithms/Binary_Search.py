@@ -3,9 +3,9 @@ def binary(arr, element):
     first = 0
     last = len(arr) - 1
     mid = (first + last)//2
-    print(arr)
+#     print(arr)
     while(first <= last):
-        print(mid)
+#         print(mid)
         if arr[mid] == element:
             return mid
             break
