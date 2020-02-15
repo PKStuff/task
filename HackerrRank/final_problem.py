@@ -1,7 +1,8 @@
 def flip(input, k):
     first = input[:k]
-    resp = ''.join('1' if x=='0' else '0' for x in input[k:])
-    return first + resp
+    recv_char = '0' if actual[k]=='1' else '1'
+    remain = recv_char*len(actual[k:])
+    return first + remain
 
 def func(input):
     expected = input
