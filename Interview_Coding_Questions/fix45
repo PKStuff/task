@@ -1,0 +1,22 @@
+def fix45(arr):
+    i = 0
+    visited = []
+    while i < len(arr)-1:
+        if arr[i] == 4:
+            i+=1
+            j = 0
+            while j < len(arr) and arr[j] != 5:
+                j+=1
+            if j in visited:
+                j+=1
+                while j < len(arr) and arr[j] != 5:
+                    j += 1
+            if arr[j] == 5 and j not in visited:
+                arr[i], arr[j] = arr[j], arr[i]
+                visited.append(i)
+        i+=1
+
+    return arr
+
+arr = [1, 4, 1, 5, 5, 4, 1]
+print(fix45(arr))
